@@ -8,6 +8,9 @@ import TEMPLATE from "../../template/index";
 import "./Theme.css";
 import axios from "axios";
 
+// eslint-disable-next-line import/extensions
+import localThemeData from "../../json/localThemeList";
+
 @inject("content")
 @inject("navbar")
 @inject("view")
@@ -56,12 +59,13 @@ class Theme extends React.Component {
         }
         remoteThemelist = response.data.data;
       } else {
+        remoteThemelist = localThemeData;
         // 否则默认主题
-        response = await axios.get(THEME_API());
+        /* response = await axios.get(THEME_API());
         if (!response.data.success) {
           throw new Error();
         }
-        remoteThemelist = response.data.data.themeList;
+        remoteThemelist = response.data.data.themeList; */
       }
 
       themeList = [
